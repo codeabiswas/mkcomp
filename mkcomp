@@ -42,36 +42,42 @@ cd components
 for newComponent in $@
 do
 
-    # Check if the component exists
-    # If it does, notify the user and continue to the rest
-    if [ -e $newComponent ]; then 
-        echo "$newComponent already exists."
-    else
-        # Create the component
-        mkdir $newComponent
+    # Check if the input is purely just letters
+    if [ $newComponent =~ ^\w$ ]; then
+        # Check if the component exists
+        # If it does, notify the user and continue to the rest
+        if [ -e $newComponent ]; then 
+            echo "$newComponent already exists."
+        else
+            # Create the component
+            mkdir $newComponent
 
-        # Create the two files: index.js and styled.js in the component folder
-        touch $newComponent/index.js
-        touch $newComponent/styled.js
+            # Create the two files: index.js and styled.js in the component folder
+            touch $newComponent/index.js
+            touch $newComponent/styled.js
 
-        # In index.js, input boilerplate code
-        echo "\
-import React from 'react';
+            # In index.js, input boilerplate code
+            echo "\
+    import React from 'react';
 
-const $newComponent = ({}) => {
-  return(
-    null
-  );
-};
+    const $newComponent = ({}) => {
+    return(
+        null
+    );
+    };
 
-export { $newComponent };\
-        " >> $newComponent/index.js
+    export { $newComponent };\
+            " >> $newComponent/index.js
 
-        # In styled.js, input boilerplate code
-        echo "import styled from 'styled-components';" >> $newComponent/styled.js
+            # In styled.js, input boilerplate code
+            echo "import styled from 'styled-components';" >> $newComponent/styled.js
 
-        # Notify the user process in complete and exit
-        echo "$newComponent has been successfully created!"
+            # Notify the user process in complete and exit
+            echo "$newComponent has been successfully created!"
+        fi
+    # Otherwise, notify the user that is an invalid name
+    else 
+        echo "Please input a valid format for the component name"
     fi
 
 done
