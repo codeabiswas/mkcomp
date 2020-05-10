@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Author: Andrei Biswas
+# Date Created: Saturday, May 9, 2020
+# Description: Create React components using styled-components
+
+
 # Check how many components the user has entered
 # If component name is empty, notify the user and exit
 if [ $# -eq 0 ]
