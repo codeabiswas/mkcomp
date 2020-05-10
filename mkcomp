@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Check how many components the user has entered
+componentNum=$#
+# If component name is empty, notify the user and exit
+if [ $componentNum -eq 0 ]; then 
+    echo "Please include at least one component."
+    exit 1
+fi
+
+componentNames=$@
+# If the user asks for help, then guide the user
+if [[ $componentNames[@] =~ "-h" || $componentNames[@] =~ "--help" ]]; then
+    echo "mkcomp creates boilerplate code for a new React component and leverages styled-components."
+    echo "Usage: mkcomp [component-name-1] [component-name-2] ... [component-name-n]"
+    echo "Type mkcomp -h or mkcomp --help to repeat this message."
+    exit 0
+fi
+
+
+# Get the current directory
+currProjDir=$(pwd)
+
+echo "Project Directory: $currProjDir"
+
+# Enter the directory
+cd $currProjDir
+
+# Check for the components folder in here
+# If it does not exist, create it
+if [ ! -e "components" ]; then
+    echo "Creating a components folder..."
+    mkdir components
+fi
+
+
+# Enter the components folder
+cd components
+
+# Go through all the arguments
+for newComponent in $@
+do
+
+    # Check if the component exists
+    # If it does, notify the user and continue to the rest
+    if [ -e $newComponent ]; then 
+        echo "$newComponent already exists."
+    else
+        # Create the component
+        mkdir $newComponent
+
+        # Create the two files: index.js and styled.js in the component folder
+        touch $newComponent/index.js
+        touch $newComponent/styled.js
+
+        # In index.js, input boilerplate code
+        echo "\
+import React from 'react';
+
+const $newComponent = ({}) => {
+  return(
+    null
+  );
+};
+
+export { $newComponent };\
+        " >> $newComponent/index.js
+
+        # In styled.js, input boilerplate code
+        echo "import styled from 'styled-components';" >> $newComponent/styled.js
+
+        # Notify the user process in complete and exit
+        echo "$newComponent has been successfully created!"
+    fi
+
+done
+
+# When done, exit
+exit 0
