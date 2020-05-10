@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check how many components the user has entered
 # If component name is empty, notify the user and exit
-if [ $# -eq 0 ]; then 
+if [ $# -eq 0 ]
+then 
     echo "Please include at least one component."
     exit 1
 fi
@@ -41,12 +42,13 @@ cd components
 # Go through all the arguments
 for newComponent in $@
 do
-
     # Check if the input is purely just letters
-    if [ $newComponent =~ ^\w$ ]; then
+    if [[ $newComponent =~ ^[a-zA-Z]+$ ]]
+    then
         # Check if the component exists
         # If it does, notify the user and continue to the rest
-        if [ -e $newComponent ]; then 
+        if [ -e $newComponent ]
+        then 
             echo "$newComponent already exists."
         else
             # Create the component
@@ -58,15 +60,15 @@ do
 
             # In index.js, input boilerplate code
             echo "\
-    import React from 'react';
+import React from 'react';
 
-    const $newComponent = ({}) => {
-    return(
-        null
-    );
-    };
+const $newComponent = (props) => {
+  return(
+    null
+  );
+};
 
-    export { $newComponent };\
+export { $newComponent };\
             " >> $newComponent/index.js
 
             # In styled.js, input boilerplate code
