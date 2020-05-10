@@ -1,16 +1,17 @@
 #!/bin/bash
 
 # Check how many components the user has entered
-componentNum=$#
 # If component name is empty, notify the user and exit
-if [ $componentNum -eq 0 ]; then 
+if [ $# -eq 0 ]; then 
     echo "Please include at least one component."
     exit 1
 fi
 
-componentNames=$@
+# Check if the user has asked for help
+helpCheck=$(echo $@ | grep -- '-h\|--help')
+
 # If the user asks for help, then guide the user
-if [[ $componentNames[@] =~ "-h" || $componentNames[@] =~ "--help" ]]; then
+if [ ! -z "$helpCheck" ]; then
     echo "mkcomp creates boilerplate code for a new React component and leverages styled-components."
     echo "Usage: mkcomp [component-name-1] [component-name-2] ... [component-name-n]"
     echo "Type mkcomp -h or mkcomp --help to repeat this message."
