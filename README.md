@@ -1,7 +1,7 @@
 # mkcomp
 I'm tired of creating a new component structure every time for React.
 
-Idea totally not stolen from [@joshwcomeau/new-component](https://github.com/joshwcomeau/new-component)
+Idea totally not stolen from [@joshwcomeau/new-component](https://github.com/joshwcomeau/new-component) ;)
 
 Here's the folder/file breakdown:
 * **Folder:** \<name-of-component\>
@@ -9,6 +9,29 @@ Here's the folder/file breakdown:
     - `index.js`: Contains the logic for the component
 
     - `styled.js`: Some sweet styling from `styled-components`
+
+---
+
+## Usage
+
+1. The help command
+    ```[bash]
+    ➜ bash mkcomp --help
+    mkcomp creates boilerplate code for a new React component and leverages styled-components.
+    Usage: mkcomp [component-name-1] [component-name-2] ... [component-name-n]
+    Type mkcomp -h or mkcomp --help to repeat this message.
+    ```
+
+2. Creating new components
+    ```[bash]
+    ➜ bash mkcomp Button Dropdown Sidebar Modal
+    Project Directory: /home/codeabiswas/Developer/mkcomp
+    Creating a components folder...
+    Button has been successfully created!
+    Dropdown has been successfully created!
+    Sidebar has been successfully created!
+    Modal has been successfully created!
+    ```
 
 ---
 
@@ -40,4 +63,3 @@ chmod +x mkcomp
 
 ## Contributors
 * Andrei Biswas @codeabiswas
-

@@ -4,12 +4,19 @@
 # Date Created: Saturday, May 9, 2020
 # Description: Create React components using styled-components
 
+# Colors for text
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+# No Color
+NC='\033[0m'
 
 # Check how many components the user has entered
 # If component name is empty, notify the user and exit
 if [ $# -eq 0 ]
 then 
-    echo "Please include at least one component."
+    printf "${RED}Please include at least one component.\n"
     exit 1
 fi
 
@@ -18,7 +25,7 @@ helpCheck=$(echo $@ | grep -- '-h\|--help')
 
 # If the user asks for help, then guide the user
 if [ ! -z "$helpCheck" ]; then
-    echo "mkcomp creates boilerplate code for a new React component and leverages styled-components."
+    printf "${CYAN}mkcomp creates boilerplate code for a new React component and leverages styled-components.${NC}\n"
     echo "Usage: mkcomp [component-name-1] [component-name-2] ... [component-name-n]"
     echo "Type mkcomp -h or mkcomp --help to repeat this message."
     exit 0
@@ -36,7 +43,7 @@ cd $currProjDir
 # Check for the components folder in here
 # If it does not exist, create it
 if [ ! -e "components" ]; then
-    echo "Creating a components folder..."
+    printf "${CYAN}Creating a components folder...\n"
     mkdir components
 fi
 
@@ -54,7 +61,7 @@ do
         # If it does, notify the user and continue to the rest
         if [ -e $newComponent ]
         then 
-            echo "$newComponent already exists."
+            printf "${YELLOW}$newComponent already exists.\n"
         else
             # Create the component
             mkdir $newComponent
@@ -80,11 +87,11 @@ export { $newComponent };\
             echo "import styled from 'styled-components';" >> $newComponent/styled.js
 
             # Notify the user process in complete and exit
-            echo "$newComponent has been successfully created!"
+            printf "${GREEN}$newComponent has been successfully created!\n"
         fi
     # Otherwise, notify the user that is an invalid name
     else 
-        echo "Please input a valid format for the component name"
+        printf "${RED}Please input a valid format for the component name\n"
     fi
 
 done
