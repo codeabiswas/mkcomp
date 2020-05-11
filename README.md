@@ -16,7 +16,7 @@ Here's the folder/file breakdown:
 
 1. The help command
     ```[bash]
-    ➜ bash mkcomp --help
+    ➜ mkcomp --help
     mkcomp creates boilerplate code for a new React component and leverages styled-components.
     Usage: mkcomp [component-name-1] [component-name-2] ... [component-name-n]
     Type mkcomp -h or mkcomp --help to repeat this message.
@@ -24,7 +24,7 @@ Here's the folder/file breakdown:
 
 2. Creating new components
     ```[bash]
-    ➜ bash mkcomp Button Dropdown Sidebar Modal
+    ➜ mkcomp Button Dropdown Sidebar Modal
     Project Directory: /home/codeabiswas/Developer/mkcomp
     Creating a components folder...
     Button has been successfully created!
