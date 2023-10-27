@@ -74,13 +74,13 @@ do
             echo "\
 import React from 'react';
 
-const $newComponent = (props) => {
+const $newComponent = ({props}) => {
   return(
-    null
+    <><h1>Placeholder for $newComponent</h1></>
   );
 };
 
-export { $newComponent };\
+export default $newComponent;\
             " >> $newComponent/index.js
 
             # In styled.js, input boilerplate code
